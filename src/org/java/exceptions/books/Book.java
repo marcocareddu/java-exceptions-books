@@ -9,7 +9,7 @@ public class Book {
 	private String editor;
 	
 //	Constructor
-	public Book(String title, int pages, String author, String editor) {
+	public Book(String title, int pages, String author, String editor) throws Exception {
 		setTitle(title);
 		setPages(pages);
 		setAuthor(author);
@@ -31,16 +31,29 @@ public class Book {
 	}
 	
 //	Setters
-	public void setTitle(String title) {
+	public void setTitle(String title) throws Exception {
+		
+		if(title == null || title.trim().isEmpty() || title.trim().length() < 3) {
+			throw new IllegalArgumentException("Invalid or empty string for Title.");
+		}
 		this.title = title;
 	}
-	public void setPages(int pages) {
+	public void setPages(int pages) throws Exception {
+		if(pages <= 0) {
+			throw new IllegalArgumentException(" Pages must be >= 0.");
+		}
 		this.pages = pages;
 	}
-	public void setAuthor(String author) {
+	public void setAuthor(String author) throws Exception {
+		if(author == null || author.trim().isEmpty() || author.trim().length() < 3) {
+			throw new IllegalArgumentException("Invalid or empty string for Author.");
+		}
 		this.author = author;
 	}	
-	public void setEditor(String editor) {
+	public void setEditor(String editor) throws Exception {
+		if(editor == null || editor.trim().isEmpty() || editor.trim().length() < 3) {
+			throw new IllegalArgumentException("Invalid or empty string for Editor.");
+		}
 		this.editor = editor;
 	}
 	
@@ -52,6 +65,6 @@ public class Book {
 				+ "Pagine: " + getPages() + "\n"
 				+ "Autore: " + getAuthor() + "\n"
 				+ "Editore: " + getEditor() + "\n"
-				+ "\n-----------------------------------------\n";
+				+ "-----------------------------------------\n";
 }
 	}
